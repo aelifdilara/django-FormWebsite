@@ -7,10 +7,13 @@ from blog.models.kategori import KategoriModel
 class SarfMalzemeModel(TalepFormuAbstractModel):
     sarf_malzeme_adi = models.ForeignKey(MalzemeModel, on_delete=models.CASCADE,related_name='sarf_malzeme_ismi')
     sarf_malzeme_adedi = models.IntegerField()
-    kategori_ismi = models.ForeignKey(KategoriModel,on_delete=models.CASCADE,related_name='kategori_ismi')
+    #kategori_ismi = models.ForeignKey(KategoriModel,on_delete=models.CASCADE,related_name='kategori_ismi')
     #form_kategori = models.ForeignKey(FormKategoriModel, related_name='sarf_malzeme_kategorileri', on_delete=models.CASCADE)
     slug = AutoSlugField(populate_from = 'baslik', unique=True, null = True, blank=True, allow_unicode=True)
-
+    kategori_adi = models.CharField(max_length=50,  null = True, default='Sarf Malzeme')
+    idari_calisanlar = [('Pınar Hanım', 'Pınar Hanım'), 
+                  ('Bahar Hanım', 'Bahar Hanım')]
+    idari_calisan = models.CharField(max_length=50, choices=idari_calisanlar, null = True, default='Bahar Hanım')
     class Meta:
         db_table = 'sarf_malzeme'
         verbose_name_plural = 'Sarf Malzeme Formları'

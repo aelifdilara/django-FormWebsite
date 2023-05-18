@@ -17,24 +17,29 @@ def liste(request):
             Q(baslik__icontains=sorgu) |
             Q(islem_durumu__icontains=sorgu) |
             Q(olusturulma_tarihi__icontains=sorgu) |
-            Q(idari_calisan__icontains=sorgu)
+            Q(idari_calisan__icontains=sorgu) |
+            Q(kategori_adi__icontains=sorgu)
         ).distinct()    
         sarf_yazilar = sarf_yazilar.filter(
             Q(baslik__icontains=sorgu) |
             Q(islem_durumu__icontains=sorgu) |
             Q(olusturulma_tarihi__icontains=sorgu) |
-            Q(idari_calisan__icontains=sorgu)
+            Q(idari_calisan__icontains=sorgu) |
+            Q(kategori_adi__icontains=sorgu)
         ).distinct()
         tasima_yazilar = tasima_yazilar.filter(
             Q(baslik__icontains=sorgu) |
             Q(islem_durumu__icontains=sorgu) |
             Q(olusturulma_tarihi__icontains=sorgu) |
-            Q(idari_calisan__icontains=sorgu)
+            Q(idari_calisan__icontains=sorgu) |
+            Q(kategori_adi__icontains=sorgu)
         ).distinct()
 
-    paginator = Paginator(hijyen_yazilar,2)
-    paginator2 = Paginator(sarf_yazilar,2)
-    paginator3 = Paginator(tasima_yazilar,2)
+    paginator = Paginator(hijyen_yazilar,10)
+    paginator2 = Paginator(sarf_yazilar,10)
+    paginator3 = Paginator(tasima_yazilar,10)
+    sayfa = request.GET.get("sayfa")
+    sayfa = request.GET.get("sayfa")
     sayfa = request.GET.get("sayfa")
     
     context_all = {'hijyen_yazilar':paginator.get_page(sayfa) ,

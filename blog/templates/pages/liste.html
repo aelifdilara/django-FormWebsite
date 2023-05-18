@@ -51,7 +51,7 @@
           <td>
             <a  href="{% url 'detay' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a>
           </td>
-          <td>Hijyen</td>
+          <td>{{yazi.kategori_adi}}</td>
           <td>{{yazi.islem_durumu}}</td>
           <td>{{yazi.olusturulma_tarihi}}</td>
         </tr>
@@ -63,7 +63,7 @@
         <tr>
           <td>{{yazi.idari_calisan}}</td>
           <td><a  href="{% url 'detay_tasima' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
-          <td>Taşıma</td>
+          <td>{{yazi.kategori_adi}}</td>
           <td>{{yazi.islem_durumu}}</td>
           <td>{{yazi.olusturulma_tarihi}}</td>
         </tr>
@@ -74,7 +74,7 @@
         <tr>
           <td>{{yazi.idari_calisan}}</td>
           <td><a  href="{% url 'detay_sarf' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
-          <td>Sarf Malzeme</td>
+          <td>{{yazi.kategori_adi}}</td>
           <td>{{yazi.islem_durumu}}</td>
           <td>{{yazi.olusturulma_tarihi}}</td>
         </tr>

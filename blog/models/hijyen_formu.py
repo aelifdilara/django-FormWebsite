@@ -8,6 +8,10 @@ class HijyenModel(TalepFormuAbstractModel):
     gorevli_kisi = models.ForeignKey(GorevliModel,on_delete=models.CASCADE,related_name='gorevli_kisi_hijyen')
     #görevli kişi adı ve sayıyı birbirine bağlama işlemi gerekiyor.
     slug = AutoSlugField(populate_from = 'baslik', unique=True, null = True, blank=True, allow_unicode=True)
+    idari_calisanlar = [('Pınar Hanım', 'Pınar Hanım'), 
+                  ('Bahar Hanım', 'Bahar Hanım')]
+    idari_calisan = models.CharField(max_length=50, choices=idari_calisanlar, null = True, default='Pınar Hanım')
+    kategori_adi = models.CharField(max_length=50,  null = True, default='Hijyen')
     
     class Meta:
         db_table = 'hijyen'
