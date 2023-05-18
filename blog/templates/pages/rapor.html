@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %} Rapor {% endblock %}
+
+{% block content %} 
+    
+    <h2 style="color: black; font-weight: bold; text-align: center;">İdari Personellerin İstatistikleri</h2>
+    <hr>
+    
+
+    <div class = "row mt-2">
+        <div class="col-md-4">
+            <h3 style="padding-top: 140px; text-align: center;">Pınar Hanım</h3>
+            <h3 style="padding-top: 280px; text-align: center;">Bahar Hanım</h3>
+        </div>
+        
+        
+        <div class = "col-md-8">
+            <div style="height: 300px; width: 300px;">
+                <canvas id="myChart"></canvas>
+            </div>
+              
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+              
+            <script>
+                const ctx = document.getElementById('myChart');
+              
+                new Chart(ctx, {
+                  type: 'pie',
+                  data: {
+                    labels: [
+                        'Reddedildi',
+                        'İş Yapılıyor',
+                        'Onay Bekleniyor',
+                        'Onaylandı'
+                    ],
+                    datasets: [{
+                        label: 'Form Sayısı',
+                        data: [300, 50, 100,200],
+                        backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)',
+                        'green'
+                        ],
+                        hoverOffset: 4
+                    }]
+                  },
+                  options: {
+                    scales: {
+                      y: {
+                        beginAtZero: true
+                      }
+                    }
+                  }
+                });
+            </script>>
+
+            <div style="height: 300px; width: 300px;">
+                <canvas id="myChart2"></canvas>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+                const ctx2 = document.getElementById('myChart2');
+              
+                new Chart(ctx2, {
+                    type: 'pie',
+                  data: {
+                    
+                    labels: [
+                        'Reddedildi',
+                        'İş Yapılıyor',
+                        'Onay Bekleniyor',
+                        'Onaylandı'
+                    ],
+                    datasets: [{
+                        label: 'Form Sayısı',
+                        data: [25, 75,150 ,300],
+                        backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)',
+                        'green'
+                        ],
+                        hoverOffset: 4
+                    }]
+                  },
+                });
+            </script>>
+            
+        </div>
+
+    </div>
+
+{%endblock%}

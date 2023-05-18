@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %} Liste {% endblock %}
+
+{% block content %} 
+
+
+
+<table class="table" >
+    <thead> 
+      <tr>
+        <th scope="col">
+          <button class="btn btn-secondary dropdown-toggle"data-bs-toggle="dropdown" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          İdari Çalışan
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <a class="dropdown-item" href="?sorgu=Pınar Hanım">Pınar Hanım</a>
+          <a class="dropdown-item" href="?sorgu=Bahar Hanım">Bahar Hanım</a>
+        </div>
+      </th>
+        <th scope="col">Konu Başlığı</th>
+        <th scope="col"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Kategori
+        </button>
+        <div action = "{%url 'liste' %}" class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <a class="dropdown-item" href="?sorgu=Hijyen">Hijyen</a>
+          <a class="dropdown-item" href="?sorgu=Taşıma">Taşıma</a>
+          <a class="dropdown-item" href="?sorgu=Sarf Malzeme">Sarf Malzeme</a>
+        </div></th>
+        <th scope="col"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Onay Durumu
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <a class="dropdown-item" href="?sorgu=Onay Bekliyor">Onay Bekliyor</a>
+          <a class="dropdown-item" href="?sorgu=Onaylandı">Onaylandı</a>
+          <a class="dropdown-item" href="?sorgu=Reddedildi">Reddedildi</a>
+          <a class="dropdown-item" href="?sorgu=İşlem Yapılıyor">İşlem Yapılıyor</a>
+        </div></th>
+        <th scope="col">Tarih/Saat</th>
+      </tr>
+      <form action="{% url 'liste' %}" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" name="sorgu" type="search" placeholder="Search" aria-label="Search"> 
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+      </form>
+    </thead>
+
+    <tbody>
+        {% for yazi in hijyen_yazilar %}
+        <tr>
+          <td>{{yazi.idari_calisan}}</td>
+          <td>
+            <a  href="{% url 'detay' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a>
+          </td>
+          <td>Hijyen</td>
+          <td>{{yazi.islem_durumu}}</td>
+          <td>{{yazi.olusturulma_tarihi}}</td>
+        </tr>
+    
+        
+        {% endfor %}
+
+        {% for yazi in tasima_yazilar %}
+        <tr>
+          <td>{{yazi.idari_calisan}}</td>
+          <td><a  href="{% url 'detay_tasima' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
+          <td>Taşıma</td>
+          <td>{{yazi.islem_durumu}}</td>
+          <td>{{yazi.olusturulma_tarihi}}</td>
+        </tr>
+        
+        {% endfor %}
+
+        {% for yazi in sarf_yazilar %}
+        <tr>
+          <td>{{yazi.idari_calisan}}</td>
+          <td><a  href="{% url 'detay_sarf' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
+          <td>Sarf Malzeme</td>
+          <td>{{yazi.islem_durumu}}</td>
+          <td>{{yazi.olusturulma_tarihi}}</td>
+        </tr>
+    
+        {% endfor %}
+
+        {% for yazi in sarf_yazilar %}
+          {% empty %}
+
+            {% for yazi in hijyen_yazilar %}
+              {% empty %}
+
+              {% for yazi in tasima_yazilar %}
+                {% empty %}
+                  <div class="alert alert-warning" role="alert"> <!--bootstrapten alıdığımız  geri bildirim mesajı ekranıyla kullanıcıya yorum silinirse geri bildirim mesajı oluşturur.-->
+                    
+                    <p>Oluşturulan Bir Form Bulunmamaktadır.</p>    
+                
+                  </div>
+              {%endfor%}
+            {%endfor%}
+        {%endfor%}
+
+    </tbody>
+    
+</table>
+  
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      {% if yazilar.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?sayfa={{yazilar.previous_page_number}}" tabindex="-1" aria-disabled="true">Önceki</a> <!-- yazilar.previous_page_number ilgili sayfadan önceki sayfanın numarasını gösterir-->
+        </li>
+      
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Önceki</a>
+        </li>
+  
+      {% endif %}
+  
+      <li class="page-item"><a class="page-link" href="#">{{yazilar.number}}</a></li>
+      
+      {% if yazilar.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?sayfa={{yazilar.next_page_number}}">Sonraki</a>
+        </li>
+  
+        <li class="page-item">
+          <a class="page-link" href="?sayfa={{yazilar.paginator.num_pages}}">Son Sayfa</a>
+        </li>
+        
+      {% endif %}
+  
+  
+      
+    </ul>
+  </nav>
+  
+  
+{%endblock%}
