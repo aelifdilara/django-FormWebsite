@@ -12,7 +12,7 @@ class HijyenModel(TalepFormuAbstractModel):
                   ('Bahar Hanım', 'Bahar Hanım')]
     idari_calisan = models.CharField(max_length=50, choices=idari_calisanlar, null = True, default='Pınar Hanım')
     kategori_adi = models.CharField(max_length=50,  null = True, default='Hijyen')
-    
+    form_gonderen = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='hijyen_formlar',null = True)
     class Meta:
         db_table = 'hijyen'
         verbose_name_plural = 'Hijyen Formları'

@@ -14,6 +14,7 @@ class SarfMalzemeModel(TalepFormuAbstractModel):
     idari_calisanlar = [('Pınar Hanım', 'Pınar Hanım'), 
                   ('Bahar Hanım', 'Bahar Hanım')]
     idari_calisan = models.CharField(max_length=50, choices=idari_calisanlar, null = True, default='Bahar Hanım')
+    form_gonderen = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='sarf_formlar',null = True)
     class Meta:
         db_table = 'sarf_malzeme'
         verbose_name_plural = 'Sarf Malzeme Formları'

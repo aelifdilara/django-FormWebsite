@@ -39,16 +39,11 @@ def liste(request):
     paginator2 = Paginator(sarf_yazilar,10)
     paginator3 = Paginator(tasima_yazilar,10)
     sayfa = request.GET.get("sayfa")
-    sayfa = request.GET.get("sayfa")
-    sayfa = request.GET.get("sayfa")
     
     context_all = {'hijyen_yazilar':paginator.get_page(sayfa) ,
                  'sarf_yazilar': paginator2.get_page(sayfa),
                  "tasima_yazilar": paginator3.get_page(sayfa)
                  }
-    context_hijyen={'hijyen_yazilar':paginator.get_page(sayfa)}
-    context_sarf={'sarf_yazilar':paginator2.get_page(sayfa)}
-    context_tasima={'tasima_yazilar':paginator3.get_page(sayfa)}
 
     return render(
         request, 'pages/liste.html', 

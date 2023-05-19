@@ -1,5 +1,5 @@
 from django.urls import path
-from blog.views import liste, profil, sarf_malzeme_form, hijyen_form, tasima_form, rapor, detay, detay_tasima, detay_sarf
+from blog.views import liste, profil, sarf_malzeme_form, hijyen_form, tasima_form, rapor, detay, detay_tasima, detay_sarf,formlarim
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from blog.views.giris import CustomLoginView
@@ -18,5 +18,6 @@ urlpatterns = [
     path('rapor', rapor, name='rapor'),
     path('detay/<slug:detaySlug>', detay, name='detay'),
     path('detay_sarf/<slug:detaySlug>', detay_sarf, name='detay_sarf'),
-    path('detay_tasima/<slug:detaySlug>', detay_tasima, name='detay_tasima')
+    path('detay_tasima/<slug:detaySlug>', detay_tasima, name='detay_tasima'),
+    path('formlarim',formlarim, name='formlarim'),
 ]

@@ -12,6 +12,7 @@ class TasimaModel(TalepFormuAbstractModel):
                   ('Bahar Hanım', 'Bahar Hanım')]
     idari_calisan = models.CharField(max_length=50, choices=idari_calisanlar, null = True, default='Pınar Hanım')
     kategori_adi = models.CharField(max_length=50,  null = True, default='Taşıma')
+    form_gonderen = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='tasima_formlar',null = True)
     class Meta:
         db_table = 'tasima'
         verbose_name_plural = 'Tasima Formları'

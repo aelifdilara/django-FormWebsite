@@ -7,3 +7,4 @@ from .rapor import rapor
 from .detay import detay
 from .detay_sarf import detay_sarf
 from .detay_tasima import detay_tasima
+from .formlarim import formlarim
