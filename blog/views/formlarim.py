@@ -35,12 +35,14 @@ def formlarim(request):
             Q(kategori_adi__icontains=sorgu)
         ).distinct()
     sayfa = request.GET.get('sayfa') #bir istek sırasında belirli bir parametrenin değerini almak için kullanılır.
-    paginator = Paginator(hijyen_formlarim , 3) #yazilar 2'li 2'li şekilde sıralanır 
-    paginator2 = Paginator(tasima_formlarim, 3)
-    paginator3 = Paginator(sarf_formlarim, 3)
+    yazilarim = list(
+            sorted(
+                chain(hijyen_formlarim,tasima_formlarim,sarf_formlarim),
+                key=lambda objects: objects.olusturulma_tarihi,
+                reverse=True  # Optional
+            ))
+    paginator = Paginator(yazilarim , 5) #yazilar 2'li 2'li şekilde sıralanır 
 
     return render(request, 'pages/formlarim.html', context = {
-        'hijyen_formlarim': paginator.get_page(sayfa),
-        'tasima_formlarim': paginator2.get_page(sayfa),
-        'sarf_formlarim': paginator3.get_page(sayfa)
+        'yazilarim': paginator.get_page(sayfa),
     })

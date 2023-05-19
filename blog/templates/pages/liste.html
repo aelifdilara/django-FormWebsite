@@ -45,35 +45,11 @@
     </thead>
 
     <tbody>
-        {% for yazi in hijyen_yazilar %}
-        <tr>
-          <td>{{yazi.idari_calisan}}</td>
-          <td>
-            <a  href="{% url 'detay' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a>
-          </td>
-          <td>{{yazi.kategori_adi}}</td>
-          <td>{{yazi.islem_durumu}}</td>
-          <td>{{yazi.olusturulma_tarihi}}</td>
-        </tr>
-    
-        
-        {% endfor %}
 
-        {% for yazi in tasima_yazilar %}
+        {% for yazi in yazilar %}
         <tr>
           <td>{{yazi.idari_calisan}}</td>
-          <td><a  href="{% url 'detay_tasima' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
-          <td>{{yazi.kategori_adi}}</td>
-          <td>{{yazi.islem_durumu}}</td>
-          <td>{{yazi.olusturulma_tarihi}}</td>
-        </tr>
-        
-        {% endfor %}
-
-        {% for yazi in sarf_yazilar %}
-        <tr>
-          <td>{{yazi.idari_calisan}}</td>
-          <td><a  href="{% url 'detay_sarf' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
+          <td><a  href="{% url 'detay' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
           <td>{{yazi.kategori_adi}}</td>
           <td>{{yazi.islem_durumu}}</td>
           <td>{{yazi.olusturulma_tarihi}}</td>
@@ -81,21 +57,13 @@
     
         {% endfor %}
 
-        {% for yazi in sarf_yazilar %}
+        {% for yazi in yazilar %}
           {% empty %}
-
-            {% for yazi in hijyen_yazilar %}
-              {% empty %}
-
-              {% for yazi in tasima_yazilar %}
-                {% empty %}
-                  <div class="alert alert-warning" role="alert"> <!--bootstrapten alıdığımız  geri bildirim mesajı ekranıyla kullanıcıya yorum silinirse geri bildirim mesajı oluşturur.-->
-                    
-                    <p>Oluşturulan Bir Form Bulunmamaktadır.</p>    
-                
-                  </div>
-              {%endfor%}
-            {%endfor%}
+            <div class="alert alert-warning" role="alert"> <!--bootstrapten alıdığımız  geri bildirim mesajı ekranıyla kullanıcıya yorum silinirse geri bildirim mesajı oluşturur.-->
+              
+              <p>Oluşturulan Bir Form Bulunmamaktadır.</p>    
+          
+            </div>
         {%endfor%}
 
     </tbody>

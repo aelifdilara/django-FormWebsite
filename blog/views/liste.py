@@ -5,6 +5,8 @@ from blog.models import SarfMalzemeModel
 from blog.models import TasimaModel
 from blog.models import İdariCalisanModel
 from django.db.models import Q
+from itertools import chain
+
 def liste(request):
 
     sorgu = request.GET.get('sorgu')
@@ -34,20 +36,20 @@ def liste(request):
             Q(idari_calisan__icontains=sorgu) |
             Q(kategori_adi__icontains=sorgu)
         ).distinct()
-
-    paginator = Paginator(hijyen_yazilar,10)
-    paginator2 = Paginator(sarf_yazilar,10)
-    paginator3 = Paginator(tasima_yazilar,10)
+    yazilar = list(
+            sorted(
+                chain(hijyen_yazilar,sarf_yazilar,tasima_yazilar),
+                key=lambda objects: objects.olusturulma_tarihi,
+                reverse=True  # Optional
+            ))
+    paginator = Paginator(yazilar,10)
     sayfa = request.GET.get("sayfa")
     
-    context_all = {'hijyen_yazilar':paginator.get_page(sayfa) ,
-                 'sarf_yazilar': paginator2.get_page(sayfa),
-                 "tasima_yazilar": paginator3.get_page(sayfa)
-                 }
 
     return render(
         request, 'pages/liste.html', 
-        context=context_all
+        context= {'yazilar':paginator.get_page(sayfa) }
+
         )
 
 

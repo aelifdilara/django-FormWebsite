@@ -38,32 +38,10 @@
     </thead>
 
     <tbody>
-        {% for yazi in hijyen_formlarim %}
+       
+        {% for yazi in yazilarim %}
         <tr>
-          <td>
-            <a  href="{% url 'detay' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a>
-          </td>
-          <td>{{yazi.kategori_adi}}</td>
-          <td>{{yazi.islem_durumu}}</td>
-          <td>{{yazi.olusturulma_tarihi}}</td>
-        </tr>
-    
-        
-        {% endfor %}
-
-        {% for yazi in tasima_formlarim %}
-        <tr>
-          <td><a  href="{% url 'detay_tasima' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
-          <td>{{yazi.kategori_adi}}</td>
-          <td>{{yazi.islem_durumu}}</td>
-          <td>{{yazi.olusturulma_tarihi}}</td>
-        </tr>
-        
-        {% endfor %}
-
-        {% for yazi in sarf_formlarim %}
-        <tr>
-          <td><a  href="{% url 'detay_sarf' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
+          <td><a  href="{% url 'detay' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
           <td>{{yazi.kategori_adi}}</td>
           <td>{{yazi.islem_durumu}}</td>
           <td>{{yazi.olusturulma_tarihi}}</td>
@@ -71,21 +49,13 @@
     
         {% endfor %}
 
-        {% for yazi in sarf_formlarim %}
+        {% for yazi in yazilarim %}
           {% empty %}
-
-            {% for yazi in hijyen_formlarim %}
-              {% empty %}
-
-              {% for yazi in tasima_formlarim %}
-                {% empty %}
-                  <div class="alert alert-warning" role="alert"> <!--bootstrapten alıdığımız  geri bildirim mesajı ekranıyla kullanıcıya yorum silinirse geri bildirim mesajı oluşturur.-->
-                    
-                    <p>Oluşturulan Bir Form Bulunmamaktadır.</p>    
+              <div class="alert alert-warning" role="alert"> <!--bootstrapten alıdığımız  geri bildirim mesajı ekranıyla kullanıcıya yorum silinirse geri bildirim mesajı oluşturur.-->
                 
-                  </div>
-              {%endfor%}
-            {%endfor%}
+                <p>Oluşturulan Bir Form Bulunmamaktadır.</p>    
+            
+              </div>
         {%endfor%}
 
     </tbody>
@@ -95,17 +65,9 @@
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">
-      {% if hijyen_formlarim.has_previous %}
+      {% if yazilarim.has_previous %}
         <li class="page-item">
-          <a class="page-link" href="?sayfa={{hijyen_formlarim.previous_page_number}}" tabindex="-1" aria-disabled="true">Önceki</a> <!-- yazilar.previous_page_number ilgili sayfadan önceki sayfanın numarasını gösterir-->
-        </li>
-      {% if sarf_formlarim.has_previous %}
-      <li class="page-item">
-        <a class="page-link" href="?sayfa={{sarf_formlarim.previous_page_number}}" tabindex="-1" aria-disabled="true">Önceki</a> <!-- yazilar.previous_page_number ilgili sayfadan önceki sayfanın numarasını gösterir-->
-      </li>
-      {% if tasima_formlarim.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?sayfa={{tasima_formlarim.previous_page_number}}" tabindex="-1" aria-disabled="true">Önceki</a> <!-- yazilar.previous_page_number ilgili sayfadan önceki sayfanın numarasını gösterir-->
+          <a class="page-link" href="?sayfa={{yazilarim.previous_page_number}}" tabindex="-1" aria-disabled="true">Önceki</a> <!-- yazilar.previous_page_number ilgili sayfadan önceki sayfanın numarasını gösterir-->
         </li>
       {% else %}
         <li class="page-item disabled">
@@ -113,46 +75,23 @@
         </li>
   
       {% endif %}
-      {% endif %}
-      {% endif %}
 
       <li class="page-item">
-        <a class="page-link" href="#">{{hijyen_formlarim.number}}</a>
+        <a class="page-link" href="#">{{yazilarim.number}}</a>
       </li>
       
-      {% if hijyen_formlarim.has_next %}
+      {% if yazilarim.has_next %}
         <li class="page-item">
-          <a class="page-link" href="?sayfa={{hijyen_formlarim.next_page_number}}">Sonraki</a>
+          <a class="page-link" href="?sayfa={{yazilarim.next_page_number}}">Sonraki</a>
         </li>
   
         <li class="page-item">
-          <a class="page-link" href="?sayfa={{hijyen_formlarim.paginator.num_pages}}">Son Sayfa</a>
+          <a class="page-link" href="?sayfa={{yazilarim.paginator.num_pages}}">Son Sayfa</a>
         </li>
         
       {% endif %}
       
-      {% if sarf_formlarim.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?sayfa={{sarf_formlarim.next_page_number}}">Sonraki</a>
-        </li>
-  
-        <li class="page-item">
-          <a class="page-link" href="?sayfa={{sarf_formlarim.paginator.num_pages}}">Son Sayfa</a>
-        </li>
-        
-      {% endif %}
-
-      {% if tasima_formlarim.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?sayfa={{tasima_formlarim.next_page_number}}">Sonraki</a>
-        </li>
-  
-        <li class="page-item">
-          <a class="page-link" href="?sayfa={{tasima_formlarim.paginator.num_pages}}">Son Sayfa</a>
-        </li>
-        
-      {% endif %}
-  
+     
       
     </ul>
   </nav>
