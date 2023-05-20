@@ -13,7 +13,7 @@ def tasima_form(request):
         form = TasimaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('liste')
+            return redirect('formlarim')
     context = {
         'form' : form
     }

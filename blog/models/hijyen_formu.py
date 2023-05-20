@@ -3,6 +3,7 @@ from blog.models.malzeme import MalzemeModel
 from autoslug import AutoSlugField
 from blog.abstract_models import TalepFormuAbstractModel
 from blog.models.gorevli import GorevliModel
+from account.models import CustomUserModel
 
 class HijyenModel(TalepFormuAbstractModel):
     gorevli_kisi = models.ForeignKey(GorevliModel,on_delete=models.CASCADE,related_name='gorevli_kisi_hijyen')
@@ -12,7 +13,7 @@ class HijyenModel(TalepFormuAbstractModel):
                   ('Bahar Hanım', 'Bahar Hanım')]
     idari_calisan = models.CharField(max_length=50, choices=idari_calisanlar, null = True, default='Pınar Hanım')
     kategori_adi = models.CharField(max_length=50,  null = True, default='Hijyen')
-    form_gonderen = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='hijyen_formlar',null = True)
+    form_gonderen = models.ForeignKey(CustomUserModel, on_delete=models.CASCADE, related_name='hijyen_formlar',null = True)
     class Meta:
         db_table = 'hijyen'
         verbose_name_plural = 'Hijyen Formları'

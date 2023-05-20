@@ -10,13 +10,13 @@ def hijyen_form(request):
         return HttpResponseForbidden("Bu sayfaya erişmek için yetkiniz yok.")
     
     slug = AutoSlugField(populate_from = 'baslik', unique=True, null=True)
-
+    
     form = HijyenForm()
     if request.method == "POST":
         form = HijyenForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('liste')
+            return redirect('formlarim')
     context = {
         'form' : form
     }

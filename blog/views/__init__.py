@@ -8,3 +8,6 @@ from .detay import detay
 from .detay_sarf import detay_sarf
 from .detay_tasima import detay_tasima
 from .formlarim import formlarim
+from .sarf_malzeme_yanit import sarf_malzeme_yanit
+from .hijyen_yanit import hijyen_yanit
+from .tasima_yanit import tasima_yanit

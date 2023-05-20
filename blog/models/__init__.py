@@ -12,3 +12,6 @@ from .sun_calisan import SunCalisanModel
 from .idari_calisan import İdariCalisanModel
 from .birim import BirimModel
 from .idari_yonetici import İdariYoneticiModel
+from .sarf_malzeme_yanit import SarfMalzemeYanitModel
+from .hijyen_yanit import HijyenYanitModel
+from .tasima_yanit import TasimaYanitModel

@@ -49,7 +49,17 @@
         {% for yazi in yazilar %}
         <tr>
           <td>{{yazi.idari_calisan}}</td>
-          <td><a  href="{% url 'detay' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
+          <td>
+            {%if yazi.kategori_adi == 'Sarf Malzeme'%}
+            <a  href="{% url 'sarf_malzeme_yanit'  %}" >{{yazi.baslik}}</a>
+            {%endif%}
+            {%if yazi.kategori_adi == 'Hijyen'%}
+            <a  href="{% url 'hijyen_yanit'  %}" >{{yazi.baslik}}</a>
+            {%endif%}
+            {%if yazi.kategori_adi == 'Taşıma'%}
+            <a  href="{% url 'tasima_yanit'  %}" >{{yazi.baslik}}</a>
+            {%endif%}
+          </td>
           <td>{{yazi.kategori_adi}}</td>
           <td>{{yazi.islem_durumu}}</td>
           <td>{{yazi.olusturulma_tarihi}}</td>

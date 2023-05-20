@@ -13,7 +13,7 @@ def sarf_malzeme_form(request):
         form = SarfMalzemeForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('liste')
+            return redirect('formlarim')
     context = {
         'form' : form
     }
