@@ -41,7 +41,7 @@ def formlarim(request):
                 key=lambda objects: objects.olusturulma_tarihi,
                 reverse=True  # Optional
             ))
-    paginator = Paginator(yazilarim , 5) #yazilar 2'li 2'li şekilde sıralanır 
+    paginator = Paginator(yazilarim , 10) #yazilar 2'li 2'li şekilde sıralanır 
 
     return render(request, 'pages/formlarim.html', context = {
         'yazilarim': paginator.get_page(sayfa),
