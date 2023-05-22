@@ -1,6 +1,6 @@
 from django.urls import path
 from blog.views import liste, profil, sarf_malzeme_form, hijyen_form,tasima_form
-from blog.views import  rapor, detay, detay_tasima, detay_sarf,formlarim, sarf_malzeme_yanit, hijyen_yanit,tasima_yanit
+from blog.views import  rapor, detay,formlarim, sarf_malzeme_yanit, hijyen_yanit,tasima_yanit
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from blog.views.giris import CustomLoginView
@@ -17,9 +17,7 @@ urlpatterns = [
     path('hijyenformu', hijyen_form, name='hijyen_form'),
     path('tasimaformu', tasima_form, name='tasima_form'),
     path('rapor', rapor, name='rapor'),
-    path('detay/<slug:detaySlug>', detay, name='detay'),
-    path('detay_sarf/<slug:detaySlug>', detay_sarf, name='detay_sarf'),
-    path('detay_tasima/<slug:detaySlug>', detay_tasima, name='detay_tasima'),
+    path('detay/<slug:Formslug>/<slug:slug>', detay, name='detay'),
     path('formlarim',formlarim, name='formlarim'),
     path('sarfmalzemeyanit', sarf_malzeme_yanit, name='sarf_malzeme_yanit'),
     path('hijyenyanit', hijyen_yanit, name='hijyen_yanit'),

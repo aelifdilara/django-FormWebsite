@@ -17,7 +17,8 @@ class CustomLoginView(LoginView):
         
         if user is not None:
             login(self.request, user)
-
-            return redirect('liste')
-        
+            if self.request.user.is_staff:
+                return redirect('liste')
+            if not self.request.user.is_staff:
+                return redirect('formlarim')
         return redirect('giris')

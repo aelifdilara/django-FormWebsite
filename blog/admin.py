@@ -54,13 +54,13 @@ class GorevliAdmin(admin.ModelAdmin):
 
 @admin.register(HijyenModel)
 class HijyenAdmin(admin.ModelAdmin):
-    list_display = ('baslik','gorevli_kisi','olusturulma_tarihi')
-    search_fields = ('gorevli_kisi',)
+    list_display = ('baslik','olusturulma_tarihi')
+    search_fields = ('baslik',)
 
 @admin.register(TasimaModel)
 class TasimaAdmin(admin.ModelAdmin):
-    list_display = ('baslik','gorevli_kisi','olusturulma_tarihi')
-    search_fields = ('gorevli_kisi',)    
+    list_display = ('baslik','olusturulma_tarihi')
+    search_fields = ('baslik',)    
 
 @admin.register(DepartmanModel)
 class DepartmanAdmin(admin.ModelAdmin):

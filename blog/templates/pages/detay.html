@@ -2,18 +2,85 @@
 {% load crispy_forms_tags %}
 
 
-{% block title %} {{yazi.baslik}} {% endblock %}
+{% block title %} {{form.baslik}} {% endblock %}
 
 {% block content %} 
 
-    <h3 style=" text-align: center; ">{{yazi.baslik}}</h3>
-
-    <form method="POST", autocomplete="off">
-        {{form.non_field_errors}}
-        {% csrf_token %}
-
-        {{ form|crispy }}
+<h3 style=" text-align: center; ">{{form.baslik}}</h3>
 
 
-    </form>
+
+<div class="form-group">
+    <label for="form_gonderen">Gönderen:</label>
+    <div id="form_gonderen" name="form_gonderen" class="form-control"> {{ form.form_gonderen.first_name }} {{form.form_gonderen.last_name }}</div>
+</div>    
+
+<div class="form-group">
+    <label for="olusturulma_tarihi">Oluşturulma Tarihi:</label>
+    <div id="olusturulma_tarihi" name="olusturulma_tarihi" class="form-control"> {{ form.olusturulma_tarihi }}</div>
+</div>    
+
+
+<div class="form-group">
+    <label for="guncellenme_tarihi">Güncellenme Tarihi:</label>
+    <div id="guncellenme_tarihi" name="guncellenme_tarihi" class="form-control">{{ form.guncellenme_tarihi }}</div>
+</div>    
+
+
+<div class="form-group">
+    <label for="islem_durumu">İşlem Durumu:</label>
+    <div id="islem_durumu" name="islem_durumu" class="form-control"> {{ form.islem_durumu }}</div>
+</div> 
+
+<div class="form-group">
+    <label for="idari_calisan">İdari Çalışan:</label>
+    <div id="idari_calisan" name="idari_calisan" class="form-control">{{ form.idari_calisan }}</div>
+</div>
+
+
+{% if form.kategori_adi == 'Hijyen' or form.kategori_adi == 'Taşıma' %}
+<div class="form-group">
+    <label for="gorevli_kisi">Görevli Kişi:</label>
+    <div id="gorevli_kisi" name="gorevli_kisi" class="form-control"> {{ form.gorevli_kisi }}</div>
+</div>
+{% endif %}
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="aciklama">Açıklama:</label>
+        <input type="text" id="aciklama" name="aciklama" value="{{ form.aciklama }}"{% if form.islem_durumu != 'Onay Bekliyor' or request.user.is_staff %} readonly {% endif %} class="form-control">
+    </div>
+
+
+
+    {% if form.kategori_adi == 'Sarf Malzeme' %}
+        <div class="form-group">
+            <label for="sarf_malzeme_adi">Sarf Malzeme Adı:</label>
+            <select id="sarf_malzeme_adi" name="sarf_malzeme_adi"  value="{{ form.sarf_malzeme_adi }}" {% if form.islem_durumu != 'Onay Bekliyor' or request.user.is_staff %} disabled {% endif %} class="form-control">
+                {% for malzeme in malzemeler %}
+                    <<option value="{{ malzeme }}">{{ malzeme }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+    <div class="form-group">
+        <label for="sarf_malzeme_adedi">Sarf Malzeme Adedi:</label>
+        <input type="number" id="sarf_malzeme_adedi" name="sarf_malzeme_adedi" value="{{ form.sarf_malzeme_adedi }}" {% if form.islem_durumu != 'Onay Bekliyor' or request.user.is_staff %} readonly {% endif %} class="form-control">
+    </div>
+
+    {% endif %}
+
+    {{ update_form.as_p }}
+    {% if form.islem_durumu == 'Onay Bekliyor' and not request.user.is_staff %}    
+     <div class="form-group">
+        <button class="btn btn-danger mt-3 mb-3" type="submit "name="guncelle" >Güncelle</button>
+        <button class="btn btn-danger mt-3 mb-3" type="submit" name="sil">Sil</button>
+    </div> {% endif %}
+
+
+</form>
 {% endblock %}

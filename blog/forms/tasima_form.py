@@ -5,4 +5,4 @@ class TasimaForm(forms.ModelForm):
 
     class Meta:
         model = TasimaModel
-        fields = ('baslik', 'aciklama','gorevli_kisi')
+        fields = ('baslik', 'aciklama')

@@ -12,6 +12,8 @@ def tasima_form(request):
     if request.method == "POST":
         form = TasimaForm(request.POST)
         if form.is_valid():
+            tasima = form.save(commit=False)
+            tasima.form_gonderen = request.user
             form.save()
             return redirect('formlarim')
     context = {

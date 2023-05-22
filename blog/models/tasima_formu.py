@@ -5,7 +5,6 @@ from blog.abstract_models import TalepFormuAbstractModel
 from blog.models.gorevli import GorevliModel
 
 class TasimaModel(TalepFormuAbstractModel):
-    gorevli_kisi = models.ForeignKey(GorevliModel,on_delete=models.CASCADE,related_name='gorevli_kisi_tasima')
     #görevli kişi adı ve sayıyı birbirine bağlama işlemi gerekiyor.
     slug = AutoSlugField(populate_from = 'baslik', unique=True, null = True, blank=True, allow_unicode=True)
     idari_calisanlar = [('Pınar Hanım', 'Pınar Hanım'), 
@@ -19,4 +18,4 @@ class TasimaModel(TalepFormuAbstractModel):
         verbose_name = 'Tasima Formu'
 
     def __str__(self): #admin panelinde isim olarak görünmesi için
-        return self.gorevli_kisi.gorevli_isim_soyisim
+        return self.baslik

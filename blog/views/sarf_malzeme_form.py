@@ -12,6 +12,8 @@ def sarf_malzeme_form(request):
     if request.method == "POST":
         form = SarfMalzemeForm(request.POST)
         if form.is_valid():
+            sarf = form.save(commit=False)
+            sarf.form_gonderen = request.user
             form.save()
             return redirect('formlarim')
     context = {

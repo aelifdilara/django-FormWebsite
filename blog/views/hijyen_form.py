@@ -15,6 +15,8 @@ def hijyen_form(request):
     if request.method == "POST":
         form = HijyenForm(request.POST)
         if form.is_valid():
+            hijyen = form.save(commit=False)
+            hijyen.form_gonderen = request.user
             form.save()
             return redirect('formlarim')
     context = {

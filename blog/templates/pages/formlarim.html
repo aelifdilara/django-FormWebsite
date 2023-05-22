@@ -53,7 +53,13 @@
        
         {% for yazi in yazilarim %}
         <tr>
-          <td><a  href="{% url 'detay' detaySlug=yazi.slug %}" >{{yazi.baslik}}</a></td>
+          {% if yazi.kategori_adi == "Taşıma" %}
+            <td><a href="{% url 'detay' Formslug='tasima' slug=yazi.slug %}">{{ yazi.baslik }}</a></td>
+
+          {% else %}
+            <td><a href="{% url 'detay' Formslug=yazi.kategori_adi|lower|slugify  slug=yazi.slug %}">{{ yazi.baslik }}</a></td>
+          {% endif %}
+
           <td>{{yazi.kategori_adi}}</td>
           {%if yazi.islem_durumu == 'Onay Bekliyor'%}
           <td style="color: rgb(242, 255, 0);">{{yazi.islem_durumu}}</td>
@@ -64,7 +70,7 @@
           {%if yazi.islem_durumu == 'Reddedildi'%}
           <td style="color: rgb(255, 0, 0);">{{yazi.islem_durumu}}</td>
           {%endif%}
-          {%if yazi.islem_durumu == 'İş Yapılıyor'%}
+          {%if yazi.islem_durumu == 'İşlem Yapılıyor'%}
           <td style="color: rgb(0, 149, 255);">{{yazi.islem_durumu}}</td>
           {%endif%}
           <td>{{yazi.olusturulma_tarihi}}</td>

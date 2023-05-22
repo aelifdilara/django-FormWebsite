@@ -5,8 +5,6 @@ from .hijyen_form import hijyen_form
 from .tasima_form import tasima_form
 from .rapor import rapor
 from .detay import detay
-from .detay_sarf import detay_sarf
-from .detay_tasima import detay_tasima
 from .formlarim import formlarim
 from .sarf_malzeme_yanit import sarf_malzeme_yanit
 from .hijyen_yanit import hijyen_yanit
