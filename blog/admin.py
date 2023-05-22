@@ -13,6 +13,9 @@ from blog.models import SunCalisanModel
 from blog.models import İdariCalisanModel
 from blog.models import İdariYoneticiModel
 from blog.models import BirimModel
+from blog.models import SarfMalzemeYanitModel
+from blog.models import HijyenYanitModel
+from blog.models import TasimaYanitModel
 
 
 # Register your models here.
@@ -83,3 +86,19 @@ class BirimAdmin(admin.ModelAdmin):
 class İdariYoneticiAdmin(admin.ModelAdmin):
     list_display = ('isim','soyisim')
     search_fields = ('isim','soyisim')
+
+@admin.register(SarfMalzemeYanitModel)
+class SarfMalzemeYanitAdmin(admin.ModelAdmin):
+    list_display = ('malzeme_adi',)
+    search_fields = ('malzeme_adi',)
+
+@admin.register(HijyenYanitModel)
+class HijyenYanitAdmin(admin.ModelAdmin):
+    list_display = ('gorevli_isim_soyisim',)
+    search_fields = ('gorevli_isim_soyisim',)
+
+@admin.register(TasimaYanitModel)
+class TasimaYanitAdmin(admin.ModelAdmin):
+    list_display = ('gorevli_isim_soyisim',)
+    search_fields = ('gorevli_isim_soyisim',)
+

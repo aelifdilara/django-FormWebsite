@@ -12,10 +12,10 @@
         {{hijyen_yanit.non_field_errors}}
         {% csrf_token %}
 
-        {{ form|crispy }}
+        {{ hijyen_yanit|crispy }}
 
 
-        <input type="submit" class="btn btn-danger mt-3 mb-3" value="Görevli Ata"/>
+        <input type="submit" class="btn btn-danger mt-3 mb-3" value="Görevli Ata" />
         <input type="submit" class="btn btn-danger mt-3 mb-3" value="Onayla"/>
         <input type="submit" class="btn btn-danger mt-3 mb-3" value="Reddet"/>
     </form>

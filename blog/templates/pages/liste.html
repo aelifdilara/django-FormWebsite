@@ -4,10 +4,15 @@
 
 {% block content %} 
 
+{% load static %}
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="{% static 'liste.css' %}">
 
-
-<table class="table" >
-    <thead> 
+<div class="container p-3 my-3 " style="background: rgba(0, 0, 0, 0.3); border-radius: 17px;">
+<body>
+<table class="table" style="color: #FFF5F5">
+    <thead  style="background-color:#7195B6"> 
       <tr>
         <th scope="col">
           <button class="btn btn-secondary dropdown-toggle"data-bs-toggle="dropdown" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -18,8 +23,13 @@
           <a class="dropdown-item" href="?sorgu=Bahar Hanım">Bahar Hanım</a>
         </div>
       </th>
-        <th scope="col">Konu Başlığı</th>
-        <th scope="col"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <th scope="col">
+        <button class="btn btn-secondary" type="button" >
+          Konu Başlığı
+        </button>
+        </th>
+        <th scope="col">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Kategori
         </button>
         <div action = "{%url 'liste' %}" class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -30,22 +40,31 @@
         <th scope="col"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Onay Durumu
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <a class="dropdown-item" href="?sorgu=Onay Bekliyor">Onay Bekliyor</a>
-          <a class="dropdown-item" href="?sorgu=Onaylandı">Onaylandı</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2" >
+          <a class="dropdown-item" href="?sorgu=Onay Bekliyor" >Onay Bekliyor</a>
+          <a class="dropdown-item" href="?sorgu=Onaylandı" >Onaylandı</a>
           <a class="dropdown-item" href="?sorgu=Reddedildi">Reddedildi</a>
           <a class="dropdown-item" href="?sorgu=İşlem Yapılıyor">İşlem Yapılıyor</a>
-        </div></th>
-        <th scope="col">Tarih/Saat</th>
+        </div>
+      </th>
+        <th scope="col">
+          <button class="btn btn-secondary" type="button" >
+          Tarih/Saat
+        </button>
+        </th>
       </tr>
+    
       <form action="{% url 'liste' %}" class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" name="sorgu" type="search" placeholder="Search" aria-label="Search"> 
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+        <div class="input-group mb-3">
+          <input class="form-control mr-sm-2" name="sorgu" type="search" placeholder="Search" aria-label="Search" > 
+          <div class="input-group-append">
+            <button class="btn btn-secondary" type="submit"  >Search</button>
+          </div>
+        </div>
       </form>
     </thead>
 
     <tbody>
-
         {% for yazi in yazilar %}
         <tr>
           <td>{{yazi.idari_calisan}}</td>
@@ -61,7 +80,18 @@
             {%endif%}
           </td>
           <td>{{yazi.kategori_adi}}</td>
-          <td>{{yazi.islem_durumu}}</td>
+          {%if yazi.islem_durumu == 'Onay Bekliyor'%}
+          <td style="color: rgb(242, 255, 0);">{{yazi.islem_durumu}}</td>
+          {%endif%}
+          {%if yazi.islem_durumu == 'Onaylandı'%}
+          <td style="color: rgb(27, 182, 19); ">{{yazi.islem_durumu}}</td>
+          {%endif%}
+          {%if yazi.islem_durumu == 'Reddedildi'%}
+          <td style="color: rgb(255, 0, 0);">{{yazi.islem_durumu}}</td>
+          {%endif%}
+          {%if yazi.islem_durumu == 'İş Yapılıyor'%}
+          <td style="color: rgb(0, 149, 255);">{{yazi.islem_durumu}}</td>
+          {%endif%}
           <td>{{yazi.olusturulma_tarihi}}</td>
         </tr>
     
@@ -79,7 +109,7 @@
     </tbody>
     
 </table>
-  
+</div>
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">
