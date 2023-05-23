@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from blog.forms import SarfMalzemeForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-
+import django.contrib.sessions.middleware
 @login_required
 def sarf_malzeme_form(request):
 
@@ -14,6 +14,7 @@ def sarf_malzeme_form(request):
         if form.is_valid():
             sarf = form.save(commit=False)
             sarf.form_gonderen = request.user
+            request.session['form_gonderen'] = sarf.form_gonderen
             form.save()
             return redirect('formlarim')
     context = {

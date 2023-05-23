@@ -6,5 +6,5 @@ class HijyenYanit(forms.ModelForm):
     class Meta:
         model = HijyenYanitModel
         fields = ( 
-            'aciklama', 'gorevli_isim_soyisim'
+            'hijyen_aciklama', 'gorevli_isim_soyisim'
         )

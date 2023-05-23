@@ -1,7 +1,7 @@
 from django.db import models
 
 class GorevliModel(models.Model):
-    gorevli_isim_soyisim = models.CharField(max_length=100,)
+    gorevli_isim_soyisim = models.CharField(max_length=100,blank=True, null=True)
 
     class Meta:
         db_table = 'gorevli'

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from blog.forms import SarfYanit
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+import django.contrib.sessions.middleware
 
 @login_required
 def sarf_malzeme_yanit(request):
@@ -12,6 +13,7 @@ def sarf_malzeme_yanit(request):
     if request.method == "POST":
         sarf_yanit = SarfYanit(request.POST)
         if sarf_yanit.is_valid():
+            request.form_gonderen = request.session.get('form_gonderen')
             sarf_yanit.save()
             return redirect('liste')
     context = {

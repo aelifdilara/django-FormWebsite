@@ -1,10 +1,10 @@
 from django import forms
-from blog.models import SarfMalzemeYanitModel
+from blog.models import SarfMalzemeModel
 
 class SarfYanit(forms.ModelForm):
 
     class Meta:
-        model = SarfMalzemeYanitModel
+        model = SarfMalzemeModel
         fields = ( 
-            'aciklama',
+            'sarf_aciklama', 'form_gonderen'
         )

@@ -8,8 +8,6 @@
 
 <h3 style=" text-align: center; ">{{form.baslik}}</h3>
 
-
-
 <div class="form-group">
     <label for="form_gonderen">Gönderen:</label>
     <div id="form_gonderen" name="form_gonderen" class="form-control"> {{ form.form_gonderen.first_name }} {{form.form_gonderen.last_name }}</div>
@@ -39,12 +37,13 @@
 
 
 {% if form.kategori_adi == 'Hijyen' or form.kategori_adi == 'Taşıma' %}
+{%if form.islem_durumu == 'İşlem Yapılıyor' or form.islem_durumu == 'Onaylandı'%}
 <div class="form-group">
     <label for="gorevli_kisi">Görevli Kişi:</label>
     <div id="gorevli_kisi" name="gorevli_kisi" class="form-control"> {{ form.gorevli_kisi }}</div>
 </div>
 {% endif %}
-
+{% endif %}
 
 <form method="POST">
     {% csrf_token %}
